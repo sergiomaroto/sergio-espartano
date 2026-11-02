@@ -1,25 +1,8 @@
-SERGIO ESPARTANO - PROTOTIPO 1.0
+SERGIO ESPARTANO 2.0
 
-Aplicación web estática sin backend. Datos guardados en localStorage del navegador.
-
-FUNCIONES DISPONIBLES
-- Registro de series, ejercicios, pesos y repeticiones.
-- Diario de comidas y macronutrientes introducidos manualmente.
-- Registro de tenis impartido, partidos y otras actividades.
-- Registro de peso, cintura, grasa estimada y gráfico de peso.
-- Hábitos y resumen semanal.
-- Exportación e importación de copia JSON.
-- Interfaz responsive, manifest y service worker para PWA.
-
-PENDIENTE (NO IMPLEMENTADO)
-- Fotos, autenticación, Face ID, sincronización, asistente IA, planes inteligentes y notificaciones.
-- Cálculo nutricional automático.
-
-INSTALACIÓN
-1. Descomprime la carpeta.
-2. Publica el contenido de la carpeta en un hosting HTTPS de archivos estáticos.
-3. Abre la URL en Safari de iPhone > Compartir > Añadir a pantalla de inicio.
-4. Exporta copias de seguridad periódicamente. No borres los datos de Safari antes de exportar.
-
-PRIVACIDAD
-No hay cuentas ni servidor. Los registros están en el almacenamiento local del navegador, que NO está cifrado por la aplicación. No usar en un dispositivo compartido. Evitar información médica sensible.
+1. En la aplicación 1.0: Más > Exportar copia JSON y conservar el archivo.
+2. En GitHub, abrir el repositorio, Add file > Upload files. Subir los seis archivos DE ESTA carpeta a la raíz, reemplazando los anteriores. Confirmar cambios.
+3. Esperar el despliegue de Pages y abrir de nuevo la app. Puede requerir cerrarla y volver a abrirla para renovar la caché.
+4. Si la app se abre sin registros, NO importar todavía sin comprobar que es el mismo navegador e instalación. Los datos 1.0 permanecen bajo la clave localStorage sergio-espartano-v1.
+5. La sección Plan incluye calendario, fichas de técnica, series y cronómetro. Los vídeos son búsquedas, no enlaces verificados.
+6. Las recomendaciones son orientativas y no sustituyen la evaluación de un profesional sanitario o entrenador presencial.

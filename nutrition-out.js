@@ -24,6 +24,20 @@ const OUT_FOODS={
 };
 // Catálogo ampliado: estimaciones por ración habitual, editables antes de guardar.
 const OUT_CATEGORIES={
+ '🥐 Desayunos y brunch':[
+ ['Porra grande',240,5,30,11,'1 porra, tamaño variable'],['Churro tradicional',90,2,11,4,'1 churro'],['Chocolate caliente a la taza',230,7,34,7,'200 ml'],
+ ['Café con leche y azúcar',110,4,16,4,'1 taza'],['Leche con cacao',180,9,22,6,'250 ml'],['Leche con galletas',310,11,43,11,'250 ml leche + 5 galletas'],
+ ['Galletas tipo María',130,2,22,4,'5 unidades, 30 g'],['Tostada con tomate y jamón serrano',350,17,40,14,'pan 80 g + jamón 40 g + aceite 10 g'],
+ ['Tostada con tomate y aceite',260,7,37,10,'pan 80 g + tomate + aceite 10 g'],['Tostada con aguacate y huevo',400,17,36,21,'1 tostada completa'],
+ ['Tostada con queso de cabra',380,15,38,19,'1 tostada'],['Tortilla francesa de 2 huevos',190,13,1,15,'2 huevos + 5 g aceite'],
+ ['Huevos revueltos con tostadas',370,19,34,17,'2 huevos + 70 g pan + aceite'],['Huevos rotos con jamón (desayuno)',570,24,45,33,'1 ración moderada'],
+ ['Bol de kéfir con chía y kiwi',300,13,30,15,'250 g kéfir + 15 g chía + kiwi'],['Bol de kéfir, avena y plátano',430,17,64,14,'250 g kéfir + 50 g avena + plátano'],
+ ['Yogur griego con frutos secos',340,17,18,23,'200 g yogur + 25 g nueces'],['Avena con leche y fruta',390,16,60,10,'50 g avena + leche + fruta'],
+ ['Sándwich mixto',360,19,35,16,'1 sándwich'],['Bocadillo pequeño de jamón',390,23,48,12,'100 g pan + 50 g jamón'],
+ ['Tortitas caseras con fruta',420,16,62,13,'3 tortitas + fruta'],['Tostada de mantequilla y mermelada',320,6,47,12,'80 g pan + 10 g mantequilla + 20 g mermelada'],
+ ['Plátano',105,1,27,0,'1 unidad'],['Batido de proteína whey con leche',235,32,15,6,'30 g whey + 250 ml leche']
+ ],
+
  '🥩 Carnes y asados':[
  ['Entrecot de vaca madurada (300 g)',810,66,0,60,'300 g'],['Chuletón de vaca madurada (300 g comestibles)',900,66,0,70,'300 g comestibles'],['Solomillo de ternera (200 g)',360,52,0,16,'200 g'],['Carne a la piedra (300 g, corte medio)',750,78,0,49,'300 g'],['Churrasco (250 g)',650,55,0,47,'250 g'],['Secreto ibérico (200 g)',620,38,0,52,'200 g'],['Cinta de lomo (200 g)',330,48,0,14,'200 g'],['Cordero asado (250 g)',650,55,0,48,'250 g'],['Cochinillo asado (250 g)',700,48,0,55,'250 g'],['Hamburguesa Angus con pan y queso',760,43,48,43,'1 hamburguesa'],['Albóndigas caseras en salsa',390,24,18,24,'200 g'],['Pollo asado con piel',400,48,0,23,'200 g']],
  '🍝 Pastas, arroces y pizzas':[
@@ -79,5 +93,15 @@ function outFoodPanel(date){
  <p class="hint">Postre: puedes incluirlo si te apetece. El registro muestra su impacto estimado, no lo clasifica como permitido o prohibido. El alcohol no tiene un nivel de consumo sin riesgo; registra las unidades sin compensarlas con ejercicio.</p>
  </details>`;
 }
+function breakfastOptionsPanel(date){
+ const items=db.meals.filter(x=>x.date===date&&x.type==='Desayuno'&&x.source==='estimación editable de comida fuera');
+ return `<details class="card"><summary><b>🥐 Desayunos alternativos y de fin de semana</b><br><small>Porras, churros, tostadas, huevos, kéfir, galletas y brunch</small></summary>
+ <p class="hint">Elige un desayuno o combina varios alimentos. El menú semanal se conserva. Solo cuenta lo que registres como consumido. Los valores por ración son aproximados y editables.</p>
+ ${outFoodForm(date,'Desayuno')}
+ ${items.map(x=>`<div class="entry row"><span><b>${esc(x.name)}</b><br><small>${esc(x.quantity)} · ${round1(x.kcal)} kcal</small></span><button class="btn secondary" onclick="removeEntry('meals',${Number(x.id)})">✕</button></div>`).join('')}
+ </details>`;
+}
+const originalNutritionPanelBreakfast=nutritionPanel;
+nutritionPanel=function(date){return originalNutritionPanelBreakfast(date)+breakfastOptionsPanel(date)};
 // El panel se integra desde nutrition.js, tras cargar este módulo.
 render();

@@ -79,6 +79,5 @@ function outFoodPanel(date){
  <p class="hint">Postre: puedes incluirlo si te apetece. El registro muestra su impacto estimado, no lo clasifica como permitido o prohibido. El alcohol no tiene un nivel de consumo sin riesgo; registra las unidades sin compensarlas con ejercicio.</p>
  </details>`;
 }
-const nutritionPanelBeforeOut=nutritionPanel;
-nutritionPanel=function(date){return nutritionPanelBeforeOut(date)+outFoodPanel(date)};
+// El panel se integra desde nutrition.js, tras cargar este módulo.
 render();
